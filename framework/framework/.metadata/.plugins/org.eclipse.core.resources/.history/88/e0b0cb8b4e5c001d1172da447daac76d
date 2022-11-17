@@ -1,0 +1,104 @@
+package product;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeClass;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class SauceLabs {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	WebDriverManager.chromedriver().setup();
+	
+	WebDriver driver = new ChromeDriver();
+	
+	LoginPage LP=new LoginPage(driver);
+	InventoryPage IP=new InventoryPage(driver);
+	ChartPage CP=new ChartPage(driver);
+	CheckoutPage chk=new CheckoutPage(driver);
+	ConfirmPage cnf = new ConfirmPage(driver);
+	ThankyouPage TY=new ThankyouPage(driver);
+
+
+	
+	driver.get("https://www.saucedemo.com/");
+	
+	driver.manage().window().maximize();
+	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+	// Login Page
+	
+LP.uname("standard_user");
+LP.password("secret_sauce");
+LP.login();
+
+    // InventoryPage
+boolean invpage=driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).isEnabled();
+if(invpage==true)
+{
+	
+	//select items to buy
+	  IP.allthings_Tshirt();
+	  IP.backPack();
+	  IP.bolt_Tshirt();
+	
+	//click on cart to verify the items
+	
+		boolean cartpg=IP.chartLink.isEnabled();
+     if(cartpg==true)
+     {
+
+    	 // click on Chart Link
+    	 
+	    IP.gotoChart();
+	    
+	    // click on checkout 
+	
+     //    CP.checkout();
+		driver.findElement(By.id("checkout")).click();
+
+	// add checkout info
+     	boolean chkoutpg=driver.findElement(By.id("first-name")).isEnabled();
+      if(chkoutpg==true)
+		{
+	     chk.firstName("Pavan");
+	     chk.lastName("Rajasagi");
+	     chk.zipCode("30328");
+	     chk.btncontinue();
+	         
+
+	// confirm order
+      
+	   	boolean cnfrmpg=driver.findElement(By.id("finish")).isEnabled();
+    if(chkoutpg==true)
+    {
+	
+	cnf.finish();
+	
+	String tymsg=TY.thankyouMsg.getText();
+	System.out.println(tymsg);
+	
+	String orderMsg=TY.thankyouMsg.getText();
+	System.out.println(orderMsg);
+	
+	
+	 driver.close();
+	
+}
+}
+     }
+     }
+
+else
+{
+	driver.close();	
+
+}
+}
+	}

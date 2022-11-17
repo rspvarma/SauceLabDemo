@@ -1,0 +1,56 @@
+package product;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+public class SL_Credentials_Verification extends MainTest
+{
+	@Test(dataProvider="dataobj")
+	public void SL_Users(String uname,String pwd) throws IOException
+	{
+		LoginPage LP = appLaunch();
+		LP.uname(uname);
+		LP.password(pwd);
+		LP.login();
+	    String pageTitle=driver.getTitle();
+	    Assert.assertEquals(pageTitle, "Swag Labs");
+	   
+		Logout();
+		
+
+	   
+		}
+
+	@DataProvider
+	public Object[][] dataobj()	
+	{
+	Object[][] DD=new Object[4][2];
+	//first user
+	DD [0][0]="standard_user";
+	DD [0][1]="secret_sauce";
+	
+	//second user
+	DD [1][0]="locked_out_user";
+    DD [1][1]="secret_sauce";
+    
+    // third user
+    DD [2][0]="problem_user";
+    DD [2][1]="secret_sauce";
+    
+    // fourth user
+    
+    DD [3][0]="performance_glitch_user";
+    DD [3][1]="secret_sauce";
+	
+	return DD;
+	
+			
+	}
+	
+
+	
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [SauceLab]" guice-stage="DEVELOPMENT" verbose="0">
+  <listeners>
+    <listener class-name="product.Listeners"/>
+  </listeners>
+  <test thread-count="5" name="CredentialsVerificationTest(failed)" verbose="0">
+    <classes>
+      <class name="product.SL_Credentials_Verification">
+        <methods>
+          <include name="SL_Users"/>
+        </methods>
+      </class> <!-- product.SL_Credentials_Verification -->
+    </classes>
+  </test> <!-- CredentialsVerificationTest(failed) -->
+  <test thread-count="5" name="ErrorValidationTest(failed)" verbose="0">
+    <classes>
+      <class name="product.SL_ErrorValidations">
+        <methods>
+          <include name="SL_Wrong_Credentials"/>
+          <include name="SL_Password_Missing"/>
+          <include name="SL_Username_MIssing"/>
+        </methods>
+      </class> <!-- product.SL_ErrorValidations -->
+    </classes>
+  </test> <!-- ErrorValidationTest(failed) -->
+</suite> <!-- Failed suite [SauceLab] -->

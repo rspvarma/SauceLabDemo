@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-11-17T07:02:56 IST" name="SauceLab" finished-at="2022-11-17T07:03:43 IST" duration-ms="47354">
+    <groups>
+      <group name="ErrorValidations">
+        <method signature="SL_ErrorValidations.SL_Password_Missing()[pri:0, instance:product.SL_ErrorValidations@55493582]" name="SL_Password_Missing" class="product.SL_ErrorValidations"/>
+        <method signature="SL_ErrorValidations.SL_Username_MIssing()[pri:0, instance:product.SL_ErrorValidations@55493582]" name="SL_Username_MIssing" class="product.SL_ErrorValidations"/>
+        <method signature="SL_ErrorValidations.SL_Wrong_Credentials()[pri:0, instance:product.SL_ErrorValidations@55493582]" name="SL_Wrong_Credentials" class="product.SL_ErrorValidations"/>
+      </group> <!-- ErrorValidations -->
+    </groups>
+    <test started-at="2022-11-17T07:02:56 IST" name="PurchaseOrderTest" finished-at="2022-11-17T07:03:02 IST" duration-ms="6069">
+      <class name="product.SauceLabs">
+        <test-method signature="PurchaseOrder()[pri:0, instance:product.SauceLabs@1458ed9c]" started-at="2022-11-17T07:02:56 IST" name="PurchaseOrder" finished-at="2022-11-17T07:03:02 IST" duration-ms="5992" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PurchaseOrder -->
+      </class> <!-- product.SauceLabs -->
+    </test> <!-- PurchaseOrderTest -->
+    <test started-at="2022-11-17T07:03:03 IST" name="CredentialsVerificationTest" finished-at="2022-11-17T07:03:20 IST" duration-ms="16808">
+      <class name="product.SL_Credentials_Verification">
+        <test-method signature="SL_Users()[pri:0, instance:product.SL_Credentials_Verification@554e218]" started-at="2022-11-17T07:03:03 IST" name="SL_Users" finished-at="2022-11-17T07:03:20 IST" duration-ms="16806" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SL_Users -->
+      </class> <!-- product.SL_Credentials_Verification -->
+    </test> <!-- CredentialsVerificationTest -->
+    <test started-at="2022-11-17T07:03:20 IST" name="ErrorValidationTest" finished-at="2022-11-17T07:03:43 IST" duration-ms="23790">
+      <class name="product.SL_ErrorValidations">
+        <test-method signature="SL_Password_Missing()[pri:0, instance:product.SL_ErrorValidations@55493582]" started-at="2022-11-17T07:03:20 IST" name="SL_Password_Missing" finished-at="2022-11-17T07:03:22 IST" duration-ms="2754" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SL_Password_Missing -->
+        <test-method signature="SL_Username_MIssing()[pri:0, instance:product.SL_ErrorValidations@55493582]" started-at="2022-11-17T07:03:22 IST" name="SL_Username_MIssing" finished-at="2022-11-17T07:03:41 IST" duration-ms="18900" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SL_Username_MIssing -->
+        <test-method signature="SL_Wrong_Credentials()[pri:0, instance:product.SL_ErrorValidations@55493582]" started-at="2022-11-17T07:03:41 IST" name="SL_Wrong_Credentials" finished-at="2022-11-17T07:03:43 IST" duration-ms="2118" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SL_Wrong_Credentials -->
+      </class> <!-- product.SL_ErrorValidations -->
+    </test> <!-- ErrorValidationTest -->
+  </suite> <!-- SauceLab -->
+</testng-results>

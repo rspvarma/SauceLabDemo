@@ -1,0 +1,94 @@
+package product;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeClass;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class SauceLabs {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	WebDriverManager.chromedriver().setup();
+	
+	WebDriver driver = new ChromeDriver();
+	
+	LoginPage LP=new LoginPage(driver);
+	InventoryPage IP= new InventoryPage(driver);
+	ChartPage CP= new ChartPage(driver);
+	ChartPage CRT= new ChartPage(driver);
+	CheckoutPage CHK= new CheckoutPage(driver);
+	ConfirmPage CNF= new ConfirmPage(driver);
+	ThankyouPage TYP= new ThankyouPage(driver);
+	
+	
+	driver.get("https://www.saucedemo.com/");
+	
+	driver.manage().window().maximize();
+	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+	// Login Page
+	
+LP.uname("standard_user");
+LP.password("secret_sauce");
+LP.login();
+
+    // InventoryPage
+boolean invpage=IP.backPack.isEnabled();
+if(invpage==true)
+{
+	
+	//select items to buy
+	
+	 IP.backPack();
+	 IP.bolt_Tshirt();
+	 IP.bikeLight();
+	 
+	//click on cart to verify the items
+	
+	boolean cartpg=IP.chartLink.isEnabled();
+     if(cartpg==true)
+     {
+
+     IP.gotoChart();
+     
+     CRT.checkout();
+     
+	// add checkout info
+	boolean chkoutpg=CRT.checkout.isEnabled();
+      if(chkoutpg==true)
+		{
+	    CHK.firstName("Pavan");
+	    CHK.lastName("Rajasagi");
+	    CHK.zipCode("30328");
+	    CHK.btncontinue();
+
+	// confirm order
+      
+  	boolean cnfrmpg=CNF.Btn_finish.isEnabled();
+    if(chkoutpg==true)
+    {
+	
+     CNF.finish();	
+     
+	String tymsg=TYP.t.getText();
+	System.out.println(tymsg);	
+	 driver.close();
+	
+}
+}
+     }
+     }
+
+else
+{
+	driver.close();	
+
+}
+}
+	}

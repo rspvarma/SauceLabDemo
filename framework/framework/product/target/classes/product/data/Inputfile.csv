@@ -1,0 +1,5 @@
+TestcaseName,Username,Password
+TC1_001,standard_user,secret_sauce
+TC1_002,locked_out_user,secret_sauce
+TC1_003,problem_user,secret_sauce
+TC1_004,performance_glitch_user,secret_sauce

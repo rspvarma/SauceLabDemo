@@ -1,0 +1,13 @@
+package product;
+
+public class ExtentReport {
+	
+	public void getReportObj()
+	{
+		String ER=System.getProperty("user.dir"+"\\Results\\index.html");
+		
+		ExtentSparkReporter reporter = new ExtentSparkReporter();
+		
+	}
+
+}

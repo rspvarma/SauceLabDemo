@@ -1,0 +1,88 @@
+package product;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.time.Duration;
+import java.util.Properties;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class MainTest {
+
+	public WebDriver driver;
+	public FileInputStream fis;
+
+	public WebDriver intializeDriver() throws IOException {
+
+		Properties pf = new Properties();
+		FileInputStream fis = new FileInputStream(
+		System.getProperty("user.dir") + "\\src\\main\\resources\\GlobalValues.properties");
+		pf.load(fis);
+
+		String browserName = pf.getProperty("browser");
+		System.out.println(browserName);
+		String URL = pf.getProperty("URL");
+
+		if (browserName.equalsIgnoreCase("Edge")) {
+			WebDriverManager.edgedriver().setup();
+			driver = new EdgeDriver();
+		} else if (browserName.equalsIgnoreCase("Firefox")) {
+			WebDriverManager.firefoxdriver();
+			driver = new FirefoxDriver();
+		} else {
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+		}
+
+		driver.get(URL);
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		return driver;
+	}
+
+	public LoginPage appLaunch() throws IOException {
+		driver = intializeDriver();
+		LoginPage LP = new LoginPage(driver);
+		return LP;
+
+	}
+
+	// *************
+
+
+	public void Logout() {
+		driver.close();
+	}
+
+	public ChartPage chartPage() {
+		ChartPage CP = new ChartPage(driver);
+		return CP;
+	}
+
+	public CheckoutPage chkPage() {
+		CheckoutPage CHK = new CheckoutPage(driver);
+		return CHK;
+	}
+
+	public ConfirmPage cnfPage() {
+		ConfirmPage CNF = new ConfirmPage(driver);
+		return CNF;
+	}
+
+	public InventoryPage invPage() {
+		InventoryPage IP = new InventoryPage(driver);
+		return IP;
+	}
+
+	public ThankyouPage tyPage() {
+		ThankyouPage TYP = new ThankyouPage(driver);
+		return TYP;
+	}
+	
+}

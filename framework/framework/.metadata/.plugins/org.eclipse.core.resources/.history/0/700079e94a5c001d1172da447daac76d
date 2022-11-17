@@ -1,0 +1,96 @@
+package product;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeClass;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class SauceLabs {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	WebDriverManager.chromedriver().setup();
+	
+	WebDriver driver = new ChromeDriver();
+	
+	LoginPage LP=new LoginPage(driver);
+	InventoryPage IP=new InventoryPage(driver);
+	ChartPage CP=new ChartPage(driver);
+	CheckoutPage chk=new CheckoutPage(driver);
+	ConfirmPage cnf = new ConfirmPage(driver);
+
+
+	
+	driver.get("https://www.saucedemo.com/");
+	
+	driver.manage().window().maximize();
+	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+	// Login Page
+	
+LP.uname("standard_user");
+LP.password("secret_sauce");
+LP.login();
+
+    // InventoryPage
+boolean invpage=IP.backPack.isEnabled();
+if(invpage==true)
+{
+	
+	//select items to buy
+	  IP.allthings_Tshirt();
+	  IP.backPack();
+	  IP.bolt_Tshirt();
+	
+	//click on cart to verify the items
+	
+	boolean cartpg=IP.chartLink.isEnabled();
+     if(cartpg==true)
+     {
+
+    	 // click on Chart Link
+    	 
+	    IP.gotoChart();
+	    
+	    // click on checkout 
+	
+         CP.checkout();
+	// add checkout info
+	boolean chkoutpg=chk.firstName.isEnabled();
+      if(chkoutpg==true)
+		{
+	     chk.firstName("Pavan");
+	     chk.lastName("Rajasagi");
+	     chk.zipCode("30328");
+	     chk.btncontinue();
+	         
+
+	// confirm order
+      
+  	boolean cnfrmpg=cnf.Btn_finish.isEnabled();
+    if(chkoutpg==true)
+    {
+	
+	cnf.finish();
+	
+	String tymsg=driver.findElement(By.xpath("//*[@id=\"checkout_complete_container\"]/div")).getText();
+	System.out.println(tymsg);	
+	 driver.close();
+	
+}
+}
+     }
+     }
+
+else
+{
+	driver.close();	
+
+}
+}
+	}
